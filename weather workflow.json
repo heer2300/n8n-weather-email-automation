@@ -1,0 +1,112 @@
+{
+  "name": "first workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0df04615-287e-45f8-b3d6-aee036496d3d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "format": "imperial",
+        "locationSelection": "coordinates",
+        "latitude": "20.757",
+        "longitude": "73.062"
+      },
+      "type": "n8n-nodes-base.openWeatherMap",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3c9e9ab6-1518-4f36-9dfd-7bcd25d2dbfa",
+      "name": "OpenWeatherMap",
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "LtucUuveq20zdYNr",
+          "name": "OpenWeatherMap account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "heerpatel2300@gmail.com",
+        "subject": "today's vibe",
+        "emailType": "text",
+        "message": "=supp, today is temperature is  {{ $json.main.temp }} but feels like kindaaaa{{ $json.main.feels_like }} at {{ $json.name }} although it will go up to {{ $json.main.temp_max }} and as low as {{ $json.main.temp_min }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "ad053bcb-cec2-4c38-9de5-1043b68c18bb",
+      "name": "Send a message",
+      "webhookId": "d4b1279b-db27-4b25-9014-ead4876aaf6e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "liUNo5Xdh3shziPu",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenWeatherMap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenWeatherMap": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7b09cdaa-f286-4171-a319-b7a95a3ac707",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5d2323cd536c7f0091bc11767bdc3f503086d0ba167b08f7dba27b0ddf0b0bc8"
+  },
+  "nodeGroups": [],
+  "id": "7HBAhTvRt62M0sQS",
+  "tags": []
+}
