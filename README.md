@@ -109,8 +109,11 @@ n8n-weather-email-automation/
 
 
 
+
 WELLLLLLLL SCREENSHOTS NAMES ARE NOT AS IT ISSS, I WAS BORED SOOOOOOOOOOOO YK
 ---
+
+lol ykwim
 
 ## Author
 
